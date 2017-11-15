@@ -1,0 +1,87 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+@prefix ewe-presence: <http://gsi.dit.upm.es/ontologies/ewe-connected-home-presence/ns/> .
+@prefix dbpedia-owl: <http://dbpedia.org/ontology/> .
+@prefix dogont <http://elite.polito.it/ontologies/dogont.owl#> .
+@base  <http://gsi.dit.upm.es/ontologies/ewe-connected-home-presence/ns/> .
+
+
+###################################
+# Channel definition
+###################################
+ewe-presence:PresenceSensor a owl:Class ;    
+    rdfs:label "Connected presense sensor"@en ;
+    rdfs:comment "This channel represents a presence sensor."@en ;
+    rdfs:subClassOf ewe:Channel .
+    
+
+###################################
+# Events definition
+###################################
+
+ewe-presence:PresenceDetected a owl:Class ;
+    rdfs:label "Presence Detected"@en ;
+    rdfs:comment "This Trigger fires every time your presence sensor detects presence at any distance."@en ;
+    rdfs:subclassOf ewe:Event ;
+    rdfs:domain ewe-presence:PresenceSensor .
+
+ewe-presence:PresenceDetectedAtDistance a owl:Class ;
+    rdfs:label "Presence Detected at distance"@en ;
+    rdfs:comment "This Trigger fires every time your presence sensor detects presence at at most the distance given."@en ;
+    rdfs:subclassOf ewe:Event ;
+    rdfs:domain ewe-presence:PresenceSensor .
+
+    
+###################################
+# Actions definition
+###################################
+# This channel has not actions
+
+
+###################################
+# Parameter mappings
+###################################
+# Reasoner defined using EYE syntax
+
+{    
+    ?channel rdf:type ewe-presence:PresenceSensor .
+}
+=>
+{
+    ?channel rdf:type dogony:PresenceSensor .
+}.
+
+
+{
+    ?event ewe:generatedBy ?channel .
+    ?channel rdf:type ewe-presence:PresenceSensor .
+    ?event ewe:distance ?distance .
+
+}
+=>
+{
+    ?event dbpedia-owl:distance ?distance .
+}.
+
+
+
+###################################
+# Example of instances
+###################################
+
+ex:beacon1 rdf:type ewe-presence:PresenceSensor .
+
+ex:presenceEvent1 rdf:type ewe-presence:PresenceDetected ;
+    ewe:generatedBy ex:beacon1 ;
+    ewe:sensorID 1a2b3c ;
+    ewe:distance 10112 ; # numerical distance 
+    ewe:time "2016-01-19T15:10:00Z"
+
+# Generated facts 
+
+ex:beacon1 rdf:type dogony:PresenceSensor .
+ex:presenceEvent1 dbpedia-owl:distance 10112 .

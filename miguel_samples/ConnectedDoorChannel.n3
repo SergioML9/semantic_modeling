@@ -1,0 +1,106 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+@prefix ewe-door: <http://gsi.dit.upm.es/ontologies/ewe-connected-home-door/ns/> .
+@prefix dbpedia-owl: <http://dbpedia.org/ontology/> .
+@prefix dogont <http://elite.polito.it/ontologies/dogont.owl#> .
+@base  <http://gsi.dit.upm.es/ontologies/ewe-connected-home-door/ns/> .
+
+
+###################################
+# Channel definition
+###################################
+ewe-door:DoorLock a owl:Class ;    
+    rdfs:label "Connected door-lock"@en ;
+    rdfs:comment "This channel represents a connected door lock able to detect when the door is opened, closed or shut, but it also can open, lock or unlock the door"
+    rdfs:subClassOf ewe:Channel .
+
+
+###################################
+# Events definition
+###################################
+
+ewe-door:DoorOpened a owl:Class ;
+    rdfs:label "Door opened"@en ;
+    rdfs:comment "This Trigger fires every time the door is opened."@en ;
+    rdfs:subclassOf ewe:Event ;
+    rdfs:domain ewe-door:DoorLock .
+
+ewe-door:DoorShut a owl:Class ;
+    rdfs:label "Door shut"@en ;
+    rdfs:comment "This Trigger fires every time the door is shut."@en ;
+    rdfs:subclassOf ewe:Event ;
+    rdfs:domain ewe-door:DoorLock .
+
+ewe-door:DoorLocked a owl:Class ;
+    rdfs:label "Door shut"@en ;
+    rdfs:comment "This Trigger fires every time the door is locked."@en ;
+    rdfs:subclassOf ewe:Event ;
+    rdfs:domain ewe-door:DoorLock .
+
+ewe-door:DoorLockedRemotely a owl:Class ;
+    rdfs:label "Door shut"@en ;
+    rdfs:comment "This Trigger fires every time the door is locked remotely."@en ;
+    rdfs:subclassOf ewe:Event ;
+    rdfs:domain ewe-door:DoorLock .
+
+    
+###################################
+# Actions definition
+###################################
+ewe-door:OpenDoor a owl:Class ;
+    rdfs:label "Open door"@en ;
+    rdfs:comment "This action will open the door."@en ;
+    rdfs:subclassOf ewe:Action ;
+    rdfs:domain ewe-door:DoorLock .
+
+ewe-door:LockDoor a owl:Class ;
+    rdfs:label "Lock door"@en ;
+    rdfs:comment "This action will lock the door."@en ;
+    rdfs:subclassOf ewe:Action ;
+    rdfs:domain ewe-door:DoorLock .
+
+ewe-door:UnlockDoor a owl:Class ;
+    rdfs:label "Unlock door"@en ;
+    rdfs:comment "This action will unlock the door."@en ;
+    rdfs:subclassOf ewe:Action ;
+    rdfs:domain ewe-door:DoorLock .
+
+
+###################################
+# Parameter mappings
+###################################
+# Reasoner defined using EYE syntax
+
+{    
+    ?channel rdf:type ewe-door:DoorLock .
+}
+=>
+{
+    ?channel rdf:type dogony:DoorActuator .
+}.
+
+
+
+###################################
+# Example of instances
+###################################
+
+ex:labdoor1 rdf:type rdf:type ewe-door:DoorLock .
+
+ex:doorOpened1 rdf:type ewe-door:DoorOpened ;
+    ewe:generatedBy ex:labdoor1 ;
+    ewe:time "2016-01-19T15:10:00Z" ;
+    ewe:credentials ex:person1 .
+
+ex:person1 rdf:type foaf:Person ;
+    foaf:firstName "Miguel" ;
+    foaf:lastName "Coronado" .
+
+
+# Generated facts 
+
+ex:labdoor1 rdf:type dogony:DoorActuator .

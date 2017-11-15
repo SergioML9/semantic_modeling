@@ -1,0 +1,36 @@
+Ejemplos de reglas con EYE
+
+# Cuando un beacon siuado al lado de la puerta detecta presencia abre la puerta
+# El identificador de sensor lo ponemos a pelo en la regla (cada sensor enviaría su identificador con sus eventos)
+# Se podrían hacer incluso operaciones para filtrar por distancia
+# NOTA: No estoy seguro si la comparación de igualdad se secribe así en EYE
+# NOTA: Tampoco se como se crea una nueva instancia en EYE. En SPARQL se hace con BIND.
+
+{
+    ?event rdf:type ewe-presence:PresenceDetected .
+    ?event ewe:sensorID ?sensorID .
+    ?sensorID == 1a2b3c .
+}
+=>
+{
+    <generate_unique_uri_for_action> rdf:type ewe-door:OpenDoor .
+}.
+
+
+# Otro ejemplo de regla más complejo podría ser
+# Cuando llegue al labo e inserte mi dni para abrir la puerta, twiteea que he llegado.
+# NOTA: las relaciones FOAF no se si son exactamente estas
+
+{
+    ?event rdf:type ewe-door:DoorOpened .
+    ?event ewe:credentials ?person .
+    ?person foaf:holdsAccount ?account .
+    ?account foaf:accountServiceHomepage <http://twitter.com> .
+    ?account foaf:accountName ?twitterId .    
+}
+=>
+{
+    <generate_unique_uri_for_action> rdf:type ewe-twitter:Tweet ;
+                                     ov:MicroBlogPost "I just got to the lab"@en ;
+                                     ov:accountIdentifier ?twitterId .
+}.
