@@ -4,6 +4,7 @@
 @prefix ewe: <http://gsi.dit.upm.es/ontologies/emo/ns/> .
 @prefix oaa: <http://gsi.dit.upm.es/ontologies/oaa/ns/> .
 @prefix onyx: <http://gsi.dit.upm.es/ontologies/onyx/ns/> .
+@prefix dbpedia-owl: <http://dbpedia.org/ontology/> .
 
 ###################################
 # Channel definition
@@ -40,14 +41,12 @@ emo:ControlBreathing a owl:Class ;
 # Parameters definition
 ###################################
 
-emo:Emotion a owl:Class ;
-	rdfs:label "Emotion" ;
-	rdfs:subclassOf ewe:InputParameter ;
-	rdfs:subclassOf onyx:Emotion ;
-	rdfs:domain emo:ContextSensor .
+emo:AmbientColor a owl:Class ;
+	rdfs:label "AmbientColor" ;
+	rdfs:subclassOf ewe:OutputParameter ;
+	rdfs:domain emo:EmotionRegulator .
 
-emo:Activity a owl:Class ;
-	rdfs:label "Activity" ;
-	rdfs:subclassOf ewe:InputParameter ;
-	rdfs:subclassOf oaa:Activity ;
-	rdfs:domain emo:ContextSensor .
+emo:Song a owl:Class ;
+    rdfs:label "Song" ;
+    rdfs:subclassOf ewe:OutputParameter ;
+    rdfs:domain emo:EmotionRegulator .
