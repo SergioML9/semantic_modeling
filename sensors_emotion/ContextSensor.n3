@@ -1,0 +1,49 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+@prefix ewe: <http://gsi.dit.upm.es/ontologies/emo/ns/> .
+@prefix oaa: <http://gsi.dit.upm.es/ontologies/oaa/ns/> .
+@prefix onyx: <http://gsi.dit.upm.es/ontologies/onyx/ns/> .
+
+###################################
+# Channel definition
+###################################
+
+emo:ContextSensor a owl:Class ;    
+    rdfs:label "Context Sensor" ;
+    rdfs:comment "This channel represents a context sensor able to detect emotions and activites." ;
+    rdfs:subClassOf ewe:Channel .
+
+###################################
+# Events definition
+###################################
+
+emo:EmotionDetected a owl:Class ;
+    rdfs:label "Emotion Detected" ;
+    rdfs:comment "This Trigger fires every time your context sensor detects an emotion." ;
+    ewe:hasInputParameter emo:Emotion ;
+    rdfs:subclassOf ewe:Event ;
+    rdfs:domain emo:ContextSensor .
+
+emo:ActivityDetected a owl:Class ;
+    rdfs:label "Activity Detected" ;
+    rdfs:comment "This Trigger fires every time your context sensor detects an activity." ;
+    ewe:hasInputParameter emo:Activity ;
+    rdfs:subclassOf ewe:Event ;
+    rdfs:domain emo:ContextSensor .
+
+###################################
+# Parameters definition
+###################################
+
+emo:Emotion a owl:Class ;
+	rdfs:label "Emotion" ;
+	rdfs:subclassOf ewe:InputParameter ;
+	rdfs:subclassOf onyx:Emotion ;
+	rdfs:domain emo:ContextSensor .
+
+emo:Activity a owl:Class ;
+	rdfs:label "Activity" ;
+	rdfs:subclassOf ewe:InputParameter ;
+	rdfs:subclassOf oaa:Activity ;
+	rdfs:domain emo:ContextSensor .

@@ -1,0 +1,53 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+@prefix ewe: <http://gsi.dit.upm.es/ontologies/emo/ns/> .
+@prefix oaa: <http://gsi.dit.upm.es/ontologies/oaa/ns/> .
+@prefix onyx: <http://gsi.dit.upm.es/ontologies/onyx/ns/> .
+
+###################################
+# Channel definition
+###################################
+
+emo:EmotionRegulator a owl:Class ;    
+    rdfs:label "Emotion regulator" ;
+    rdfs:comment "This channel represents an emotion regulator able to perform actions that regulate emotions." ;
+    rdfs:subClassOf ewe:Channel .
+
+###################################
+# Actions definition
+###################################
+
+emo:PlayRelaxingMusic a owl:Class ;
+    rdfs:label "Play relaxing music" ;
+    rdfs:comment "This action will play relaxing music." ;
+    rdfs:subclassOf ewe:Action ;
+    rdfs:domain emo:EmotionRegulator .
+
+emo:ChangeAmbientColor a owl:Class ;
+    rdfs:label "Change ambient color" ;
+    rdfs:comment "This action will change ambient color." ;
+    rdfs:subclassOf ewe:Action ;
+    rdfs:domain emo:EmotionRegulator .
+
+emo:ControlBreathing a owl:Class ;
+    rdfs:label "Control breathing" ;
+    rdfs:comment "This action will suggest controlled breathing exercises." ;
+    rdfs:subclassOf ewe:Action ;
+    rdfs:domain emo:EmotionRegulator .
+
+###################################
+# Parameters definition
+###################################
+
+emo:Emotion a owl:Class ;
+	rdfs:label "Emotion" ;
+	rdfs:subclassOf ewe:InputParameter ;
+	rdfs:subclassOf onyx:Emotion ;
+	rdfs:domain emo:ContextSensor .
+
+emo:Activity a owl:Class ;
+	rdfs:label "Activity" ;
+	rdfs:subclassOf ewe:InputParameter ;
+	rdfs:subclassOf oaa:Activity ;
+	rdfs:domain emo:ContextSensor .
