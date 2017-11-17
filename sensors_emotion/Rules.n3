@@ -1,0 +1,36 @@
+# Rule
+
+@prefix ex: <http://example.org/> .
+@prefix ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+@prefix emo: <http://gsi.dit.upm.es/ontologies/emo/ns/> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix wnaffect: <http://semanticweb.cs.vu.nl/europeana/lod/purl/vocabularies/princeton/wn30/> .
+@prefix onyx: <http://gsi.dit.upm.es/ontologies/onyx/ns/> .
+
+{
+	?event rdf:type emo:EmotionDetected .
+	?event ewe:hasInputParameter ?emotion .
+	?emotion onyx:hasEmotionCategory wnaffect:sadness .
+}
+=>
+{
+	ex:color rdf:type emo:AmbientColor;
+			dbo:colour dbo:Green.
+	ex:change_color rdf:type emo:ChangeAmbientColor ;
+			ewe:hasOutputParameter ex:color .
+}.
+
+# Input
+
+@prefix ex: <http://example.org/> .
+@prefix ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
+@prefix emo: <http://gsi.dit.upm.es/ontologies/emo/ns/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix wnaffect: <http://semanticweb.cs.vu.nl/europeana/lod/purl/vocabularies/princeton/wn30/> .
+@prefix onyx: <http://gsi.dit.upm.es/ontologies/onyx/ns/> .
+
+ex:sadness rdf:type onyx:Emotion ;
+	onyx:hasEmotionCategory wnaffect:sadness .
+ex:emotion_detected rdf:type emo:EmotionDetected ;
+	ewe:hasInputParameter ex:sadness .

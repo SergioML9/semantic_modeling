@@ -4,7 +4,7 @@
 @prefix ewe: <http://gsi.dit.upm.es/ontologies/emo/ns/> .
 @prefix oaa: <http://gsi.dit.upm.es/ontologies/oaa/ns/> .
 @prefix onyx: <http://gsi.dit.upm.es/ontologies/onyx/ns/> .
-@prefix dbpedia-owl: <http://dbpedia.org/ontology/> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
 
 ###################################
 # Channel definition
@@ -28,6 +28,7 @@ emo:PlayRelaxingMusic a owl:Class ;
 emo:ChangeAmbientColor a owl:Class ;
     rdfs:label "Change ambient color" ;
     rdfs:comment "This action will change ambient color." ;
+    ewe:hasOutputParameter emo:AmbientColor ;
     rdfs:subclassOf ewe:Action ;
     rdfs:domain emo:EmotionRegulator .
 
@@ -44,6 +45,7 @@ emo:ControlBreathing a owl:Class ;
 emo:AmbientColor a owl:Class ;
 	rdfs:label "AmbientColor" ;
 	rdfs:subclassOf ewe:OutputParameter ;
+    rdfs:subclassOf dbo:Colour ;
 	rdfs:domain emo:EmotionRegulator .
 
 emo:Song a owl:Class ;

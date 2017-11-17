@@ -1,7 +1,7 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ewe: <http://gsi.dit.upm.es/ontologies/ewe/ns/> .
-@prefix ewe: <http://gsi.dit.upm.es/ontologies/emo/ns/> .
+@prefix emo: <http://gsi.dit.upm.es/ontologies/emo/ns/> .
 @prefix oaa: <http://gsi.dit.upm.es/ontologies/oaa/ns/> .
 @prefix onyx: <http://gsi.dit.upm.es/ontologies/onyx/ns/> .
 
